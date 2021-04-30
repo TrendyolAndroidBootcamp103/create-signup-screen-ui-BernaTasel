@@ -1,5 +1,6 @@
 package school.cactus.succulentshop
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.textfield.TextInputLayout
@@ -10,7 +11,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
     private val emailValidator = EmailValidator()
     private val userNameValidator = UserNameValidator()
-    private val passwordValidator = PasswordValidator()
+    private val passwordValidator = InitPasswordValidator()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +27,17 @@ class SignUpActivity : AppCompatActivity() {
                 passwordInputLayout.validate()
 
             }
+
+            logInButton.setOnClickListener {
+                navigateToLogIn()
+            }
         }
+    }
+
+    private fun navigateToLogIn() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun TextInputLayout.validate() {
