@@ -10,8 +10,8 @@ class EmailValidator: Validator {
         field.isEmpty() -> R.string.email_is_required
         !field.contains("@") -> R.string.email_is_invalid
         !field.contains(".") -> R.string.email_is_invalid
-        field.length < 5 -> R.string.email_is_invalid
-        field.length > 50 -> R.string.email_is_invalid
+        field.substringBefore('@').length < 5 -> R.string.email_is_invalid
+        field.substringBefore('@').length >= 50 -> R.string.email_is_invalid
         else -> null
     }
 }

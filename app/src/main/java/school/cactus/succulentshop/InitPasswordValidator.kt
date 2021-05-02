@@ -14,7 +14,7 @@ class InitPasswordValidator: Validator {
 
     override fun validate(field: String) = when {
         field.isEmpty() -> R.string.password_is_required
-        field.length < 7 -> R.string.password_is_too_short
+        field.length <= 7 -> R.string.password_is_too_short
         field.length > 40 -> R.string.password_is_too_long
         !field.matches(PASSWORD_REGEX.toRegex()) -> R.string.password_must_contain
         else -> null
